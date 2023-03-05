@@ -10,9 +10,10 @@ RUN sudo apt update && sudo apt upgrade -y
 # RUN corepack enable
 # RUN corepack prepare yarn@stable --activate
 
-# Setup Pnpm
+# Setup Pnpm and Install Nest.js CLI
 RUN corepack enable &&\
-    corepack prepare pnpm@latest --activate
+  corepack prepare pnpm@latest --activate &&\
+  pnpm add -g @nestjs/cli
 
 # Install planetscale-cli
 # RUN wget https://github.com/planetscale/cli/releases/download/v0.129.0/pscale_0.129.0_linux_amd64.deb \
