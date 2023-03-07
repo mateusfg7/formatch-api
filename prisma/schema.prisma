@@ -6,6 +6,21 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model Article {
+  id         String @id @default(cuid())
+  slug       String @unique
+  title      String
+  banner_url String
+  // content    String @db.MediumText
+  content    String
+  sources    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("articles")
 }
