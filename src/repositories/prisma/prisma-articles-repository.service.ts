@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { Article } from '@prisma/client';
+import { Injectable } from '@nestjs/common'
+import { Article } from '@prisma/client'
 
-import { PrismaService } from '@/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service'
 
-import { ArticlesRepository } from '../articles-repository';
+import { ArticlesRepository } from '../articles-repository'
 
 @Injectable()
 export class PrismaArticlesRepositoryService implements ArticlesRepository {
@@ -24,8 +24,8 @@ export class PrismaArticlesRepositoryService implements ArticlesRepository {
         sources,
         title,
       },
-    });
+    })
 
-    return article;
+    return article
   }
 }

@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common'
 
-import { ArticlesController } from './articles.controller';
-import { ArticlesService } from './articles.service';
+import { ArticlesController } from './articles.controller'
+import { ArticlesService } from './articles.service'
 
-import { PrismaService } from '@/database/prisma.service';
+import { PrismaService } from '@/database/prisma.service'
 
-import { ArticlesRepository } from '@/repositories/articles-repository';
-import { PrismaArticlesRepositoryService } from '@/repositories/prisma/prisma-articles-repository.service';
+import { ArticlesRepository } from '@/repositories/articles-repository'
+import { PrismaArticlesRepositoryService } from '@/repositories/prisma/prisma-articles-repository.service'
 
 @Module({
   controllers: [ArticlesController],
