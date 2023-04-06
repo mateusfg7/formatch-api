@@ -4,8 +4,12 @@ on: [pull_request, push]
 
 jobs:
   test:
-    name: Run Tests
+    name: Tests on node ${{ matrix.node }}
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [14, 16, 18, 'lts/*', 'latest']
 
     steps:
       - name: Checkout repo
@@ -14,7 +18,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: ${{ matrix.node }}
 
       - name: Install PNPM
         run: npm i -g pnpm
