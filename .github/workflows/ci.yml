@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: 'lts/*'
 
+      - name: Install PNPM
+        run: npm i -g pnpm
+
       - name: Install dependencies
         run: pnpm install
 
@@ -34,6 +37,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
+
+      - name: Install PNPM
+        run: npm i -g pnpm
 
       - name: Install dependencies
         run: pnpm install
