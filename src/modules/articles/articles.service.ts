@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 
-import { PrismaService } from '@/database/prisma.service';
 import { ArticlesRepository } from '@/repositories/articles-repository';
 
 @Injectable()
@@ -26,13 +25,13 @@ export class ArticlesService {
 
     const sources = String(sourcesArray);
 
-    const article = await this.articleRepository.create(
+    const article = await this.articleRepository.create({
       title,
-      slug,
-      content,
       banner_url,
+      content,
+      slug,
       sources,
-    );
+    });
 
     return article;
   }
