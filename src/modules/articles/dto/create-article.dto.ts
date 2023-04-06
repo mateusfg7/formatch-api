@@ -1,21 +1,35 @@
-import { IsNotEmpty, IsUrl, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsUrl } from 'class-validator';
 
 export class CreateArticleDto {
-  @IsNotEmpty()
+  @IsNotEmpty({
+    message: 'Title could not be empty',
+  })
   title: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({
+    message: 'Content could not be empty',
+  })
   content: string;
 
-  @IsNotEmpty()
-  @IsUrl()
+  @IsNotEmpty({
+    message: 'Banner URL could not be empty',
+  })
+  @IsUrl(
+    {},
+    {
+      message: 'Banner URL need to be a valid URL',
+    },
+  )
   banner_url: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({
+    message: 'Sources could not be empty',
+  })
   @IsUrl(
     {},
     {
       each: true,
+      message: 'Sources need to be a valid URL',
     },
   )
   sources: string[];
