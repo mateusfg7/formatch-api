@@ -23,7 +23,7 @@ export class ArticlesService {
       .replaceAll(/\p{M}/gu, '')
       .replaceAll(' ', '-');
 
-    const sources = String(sourcesArray);
+    const sources = String(sourcesArray.map((source) => source.trim()));
 
     const article = await this.articleRepository.create({
       title,
