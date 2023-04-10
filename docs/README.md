@@ -2,7 +2,7 @@
 
 <h1> Formatch API </h1>
 
-Formatch API Service for <a href="https://play.google.com/store/apps/details?id=com.mateusfg7.formatch">Formatch</a> (<a href="https://github.com/mateusfg7/formatch">repo</a> app. <br/>
+Formatch API Service for <a href="https://play.google.com/store/apps/details?id=com.mateusfg7.formatch">Formatch</a> (<a href="https://github.com/mateusfg7/formatch"><i>repo</i></a>) app. <br/>
 This is a test/study project that may not be used in production. For current production API visit <a href="https://github.com/mateusfg7/formatch-web">formatch-web</a> repository.
 
 <a href="https://mateusfg7.github.io/formatch-api/coverage/">
