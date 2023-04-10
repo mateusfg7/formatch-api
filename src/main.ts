@@ -8,6 +8,8 @@ import { ValidationPipe } from '@nestjs/common'
 
 import { AppModule } from '@/app.module'
 
+import { version } from '../package.json'
+
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
@@ -16,9 +18,10 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe())
 
+
   const config = new DocumentBuilder()
     .setTitle('Formatch API')
-    .setVersion('0.0.1')
+    .setVersion(version)
     .build()
 
   const document = SwaggerModule.createDocument(app, config)
