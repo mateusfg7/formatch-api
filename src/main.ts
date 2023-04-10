@@ -18,7 +18,6 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe())
 
-
   const config = new DocumentBuilder()
     .setTitle('Formatch API')
     .setVersion(version)
