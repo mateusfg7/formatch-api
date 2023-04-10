@@ -13,7 +13,6 @@ const config: Config = {
   },
   testEnvironment: 'node',
   detectOpenHandles: true,
-  collectCoverage: true,
   collectCoverageFrom: ['**/*.(t|j)s'],
   coverageDirectory: '../docs/coverage',
   coverageReporters: ['html-spa', 'text-summary'],
