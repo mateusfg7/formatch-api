@@ -1,12 +1,13 @@
 <div align="center">
 
-# Formatch API
+<h1> Formatch API </h1>
 
-[![COVERAGE REPORT](https://img.shields.io/badge/coverage%20report-C21325?&style=for-the-badge&logo=jest)](https://mateusfg7.github.io/formatch-api/coverage/)
+Formatch API Service for <a href="https://play.google.com/store/apps/details?id=com.mateusfg7.formatch">Formatch</a> (<a href="https://github.com/mateusfg7/formatch">repo</a> app. <br/>
+This is a test/study project that may not be used in production. For current production API visit <a href="https://github.com/mateusfg7/formatch-web">formatch-web</a> repository.
 
-Formatch API Service for [Formatch](https://play.google.com/store/apps/details?id=com.mateusfg7.formatch) ([_repo_](https://github.com/mateusfg7/formatch)) app
-
-This is a test/study project that may not be used in production. For current production API visit [formatch-web](https://github.com/mateusfg7/formatch-web) repository.
+<a href="https://mateusfg7.github.io/formatch-api/coverage/">
+  <img alt="COVERAGE REPORT" src="https://img.shields.io/badge/coverage%20report-C21325?&style=for-the-badge&logo=jest" />
+</a>
 
 </div>
 
