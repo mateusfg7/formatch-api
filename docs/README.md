@@ -1,15 +1,21 @@
+<br />
 <div align="center">
 
 <h1> Formatch API </h1>
 
 Formatch API Service for <a href="https://play.google.com/store/apps/details?id=com.mateusfg7.formatch">Formatch</a> (<a href="https://github.com/mateusfg7/formatch"><i>repo</i></a>) app. <br/>
 This is a test/study project that may not be used in production. For current production API visit <a href="https://github.com/mateusfg7/formatch-web">formatch-web</a> repository.
-
+<br/><br/>
 <a href="https://mateusfg7.github.io/formatch-api/coverage/">
   <img alt="COVERAGE REPORT" src="https://img.shields.io/badge/coverage%20report-C21325?&style=for-the-badge&logo=jest" />
 </a>
 
 </div>
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 ## Description
