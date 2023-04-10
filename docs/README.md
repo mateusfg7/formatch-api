@@ -10,6 +10,8 @@ This is a test/study project that may not be used in production. For current pro
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+[[GO TO COVERAGE]](tests)
+
 ## Installation
 
 ```bash
