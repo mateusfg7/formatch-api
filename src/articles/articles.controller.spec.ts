@@ -56,12 +56,16 @@ describe('Articles Controller', () => {
         updatedAt: faker.date.recent(0),
       }
 
-      jest.spyOn(articlesService, 'create').mockResolvedValue(createdArticle)
+      jest
+        .spyOn(articlesService, 'createNewArticle')
+        .mockResolvedValue(createdArticle)
 
       const result = await articlesController.create(articlePayload)
 
       expect(result).toEqual(createdArticle)
-      expect(articlesService.create).toHaveBeenCalledWith(articlePayload)
+      expect(articlesService.createNewArticle).toHaveBeenCalledWith(
+        articlePayload,
+      )
     })
   })
 })

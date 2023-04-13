@@ -18,7 +18,7 @@ export class ArticlesController {
 
   @Post()
   create(@Body() createArticleDto: CreateArticleDto) {
-    return this.articlesService.create(createArticleDto)
+    return this.articlesService.createNewArticle(createArticleDto)
   }
 
   @Get()

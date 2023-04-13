@@ -61,7 +61,7 @@ describe('Articles Service', () => {
   })
 
   it('should create an article', async () => {
-    const createdArticle = await service.create({
+    const createdArticle = await service.createNewArticle({
       title: 'As vantagens do Reboco',
       banner_url: faker.image.abstract(),
       content: faker.lorem.text(),

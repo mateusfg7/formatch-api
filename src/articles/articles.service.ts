@@ -9,7 +9,7 @@ import { ArticlesRepository } from '@/repositories/articles-repository'
 export class ArticlesService {
   constructor(private articleRepository: ArticlesRepository) {}
 
-  async create(createArticleDto: CreateArticleDto) {
+  async createNewArticle(createArticleDto: CreateArticleDto) {
     const {
       banner_url,
       content,
