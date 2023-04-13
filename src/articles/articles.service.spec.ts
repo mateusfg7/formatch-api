@@ -39,10 +39,11 @@ const repository = {
 }
 
 describe('Articles Service', () => {
-  let service: ArticlesService
+  let articlesService: ArticlesService
+  let articlesRepository: ArticlesRepository
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       providers: [
         ArticlesService,
         PrismaService,
@@ -53,15 +54,16 @@ describe('Articles Service', () => {
       ],
     }).compile()
 
-    service = module.get<ArticlesService>(ArticlesService)
+    articlesService = moduleRef.get<ArticlesService>(ArticlesService)
+    articlesRepository = moduleRef.get<ArticlesRepository>(ArticlesRepository)
   })
 
   it('should be defined', () => {
-    expect(service).toBeDefined()
+    expect(articlesService).toBeDefined()
   })
 
-  it('should create an article', async () => {
-    const createdArticle = await service.createNewArticle({
+  describe('Create new article', () => {
+    const articlePayload = {
       title: 'As vantagens do Reboco',
       banner_url: faker.image.abstract(),
       content: faker.lorem.text(),
@@ -70,15 +72,27 @@ describe('Articles Service', () => {
         faker.internet.url(),
         ` ${faker.internet.url()}`,
       ],
-    })
+    }
 
-    expect(validator.isUUID(createdArticle.id)).toEqual(true)
-    expect(validator.isURL(createdArticle.banner_url)).toEqual(true)
-    expect(createdArticle.slug).toBe('as-vantagens-do-reboco')
-    expect(createdArticle.createdAt).toBeInstanceOf(Date)
-    expect(createdArticle.updatedAt).toBeInstanceOf(Date)
-    createdArticle.sources.split(',').forEach(source => {
-      expect(validator.isURL(source)).toEqual(true)
+    it('should create an article with valid data', async () => {
+      const createdArticle = await articlesService.createNewArticle(
+        articlePayload,
+      )
+
+      expect(articlesRepository.create).toBeCalledWith({
+        ...articlePayload,
+        sources: String(articlePayload.sources.map(source => source.trim())),
+        slug: 'as-vantagens-do-reboco',
+      })
+
+      expect(validator.isUUID(createdArticle.id)).toEqual(true)
+      expect(validator.isURL(createdArticle.banner_url)).toEqual(true)
+      expect(createdArticle.slug).toBe('as-vantagens-do-reboco')
+      expect(createdArticle.createdAt).toBeInstanceOf(Date)
+      expect(createdArticle.updatedAt).toBeInstanceOf(Date)
+      createdArticle.sources.split(',').forEach(source => {
+        expect(validator.isURL(source)).toEqual(true)
+      })
     })
   })
 })
