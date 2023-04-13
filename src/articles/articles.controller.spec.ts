@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { faker } from '@faker-js/faker'
 
-import { PrismaService } from '@/database/prisma.service'
+import { PrismaService } from '@/prisma.service'
 import { ArticlesRepository } from '@/repositories/articles-repository'
 
 import { ArticlesController } from './articles.controller'
