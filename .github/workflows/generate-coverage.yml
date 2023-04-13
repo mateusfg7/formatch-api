@@ -1,0 +1,33 @@
+name: 'Generate test coverage'
+
+on: workflow_dispatch
+
+jobs:
+  coverage:
+    name: Generate coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19.x
+
+      - name: Setup PNPM
+        run: npm i -g pnpm
+
+      - name: Setup GIT
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Run "test:cov" script
+        run: pnpm test:cov
+
+      - name: Commit and push new changes
+        run: |
+          git add .
+          git commit -m 'docs(coverage): update test coverage report'
+          git push
