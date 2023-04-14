@@ -23,6 +23,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Install packages
+        run: pnpm install
+
       - name: Run "test:cov" script
         run: pnpm test:cov
 
