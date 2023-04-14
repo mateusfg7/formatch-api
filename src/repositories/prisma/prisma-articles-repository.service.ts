@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Article } from '@prisma/client'
 
-import { PrismaService } from '@/prisma.service'
+import { PrismaService } from '@/database/prisma.service'
 
 import { ArticlesRepository } from '../articles-repository'
 

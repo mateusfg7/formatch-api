@@ -4,7 +4,7 @@ import validator from 'validator'
 
 import { ArticlesService } from './articles.service'
 
-import { PrismaService } from '@/prisma.service'
+import { PrismaService } from '@/database/prisma.service'
 import { ArticlesRepository } from '@/repositories/articles-repository'
 
 const repository = {
