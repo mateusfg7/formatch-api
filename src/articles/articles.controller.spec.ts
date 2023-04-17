@@ -51,7 +51,7 @@ describe('Articles Controller', () => {
       const createdArticle = {
         ...articlePayload,
         id: faker.datatype.uuid(),
-        sources: String(articlePayload.sources),
+        sources: articlePayload.sources,
         createdAt: faker.date.recent(0),
         updatedAt: faker.date.recent(0),
       }

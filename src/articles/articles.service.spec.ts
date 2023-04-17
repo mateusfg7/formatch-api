@@ -90,7 +90,7 @@ describe('Articles Service', () => {
       expect(createdArticle.slug).toBe('as-vantagens-do-reboco')
       expect(createdArticle.createdAt).toBeInstanceOf(Date)
       expect(createdArticle.updatedAt).toBeInstanceOf(Date)
-      createdArticle.sources.split(',').forEach(source => {
+      createdArticle.sources.forEach(source => {
         expect(validator.isURL(source)).toEqual(true)
       })
     })
