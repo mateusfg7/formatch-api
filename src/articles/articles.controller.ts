@@ -7,18 +7,24 @@ import {
   Param,
   Delete,
 } from '@nestjs/common'
+import { ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 
 import { ArticlesService } from './articles.service'
-import { CreateArticleDto } from './dto/create-article.dto'
 import { UpdateArticleDto } from './dto/update-article.dto'
 
+import { CreateArticleParams } from './models/create-article-params.model'
+import { ArticleResponse } from './models/article.response'
+
+@ApiTags('articles')
 @Controller('articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
   @Post()
-  create(@Body() createArticleDto: CreateArticleDto) {
-    return this.articlesService.createNewArticle(createArticleDto)
+  @ApiOperation({ summary: 'Create an article' })
+  @ApiCreatedResponse({ type: ArticleResponse })
+  create(@Body() createArticleParams: CreateArticleParams) {
+    return this.articlesService.createNewArticle(createArticleParams)
   }
 
   @Get()

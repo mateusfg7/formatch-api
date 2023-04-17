@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { CreateArticleDto } from './dto/create-article.dto'
+import { CreateArticleParams } from './models/create-article-params.model'
 import { UpdateArticleDto } from './dto/update-article.dto'
 
 import { ArticlesRepository } from '@/repositories/articles-repository'
@@ -9,13 +9,13 @@ import { ArticlesRepository } from '@/repositories/articles-repository'
 export class ArticlesService {
   constructor(private articleRepository: ArticlesRepository) {}
 
-  async createNewArticle(createArticleDto: CreateArticleDto) {
+  async createNewArticle(createArticleParams: CreateArticleParams) {
     const {
       banner_url,
       content,
       sources: sourcesArray,
       title,
-    } = createArticleDto
+    } = createArticleParams
 
     const slug = title
       .toLowerCase()
@@ -33,7 +33,7 @@ export class ArticlesService {
       sources,
     })
 
-    return article
+    return { ...article, sources: article.sources.split(',') }
   }
 
   findAll() {

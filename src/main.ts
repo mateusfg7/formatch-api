@@ -20,7 +20,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Formatch API')
+    .setDescription('Back-end for Formatch app')
     .setVersion(version)
+    .addTag('articles')
     .build()
 
   const document = SwaggerModule.createDocument(app, config)
