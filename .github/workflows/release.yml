@@ -20,7 +20,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 19.0.0
+          node-version: 19.x
 
       - name: Install PNPM
         run: npm i -g pnpm
