@@ -47,14 +47,6 @@ dependencies:
     specifier: ^13.9.0
     version: 13.9.0
 
-optionalDependencies:
-  semver:
-    specifier: ^7.5.0
-    version: 7.5.0
-  simple-git:
-    specifier: ^3.17.0
-    version: 3.17.0
-
 devDependencies:
   '@faker-js/faker':
     specifier: ^7.6.0
@@ -107,6 +99,12 @@ devDependencies:
   prisma:
     specifier: ^4.11.0
     version: 4.11.0
+  semver:
+    specifier: ^7.5.0
+    version: 7.5.0
+  simple-git:
+    specifier: ^3.17.0
+    version: 3.17.0
   source-map-support:
     specifier: ^0.5.20
     version: 0.5.21
@@ -973,13 +971,11 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
-    optional: true
+    dev: true
 
   /@kwsites/promise-deferred@1.1.1:
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
-    dev: false
-    optional: true
+    dev: true
 
   /@lukeed/csprng@1.0.1:
     resolution: {integrity: sha512-uSvJdwQU5nK+Vdf6zxcWAY2A8r7uqe+gePwLWzJ+fsQehq18pc0I2hJKwypZ2aLM90+Er9u1xn4iLJPZ+xlL4g==}
@@ -4878,8 +4874,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
-    optional: true
+    dev: true
 
   /sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
