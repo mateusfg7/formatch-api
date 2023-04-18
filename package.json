@@ -21,7 +21,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "depcheck": "npx depcheck",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "bump-tag": "ts-node tools/bump-tag-version.ts"
   },
   "dependencies": {
     "@fastify/static": "^6.9.0",
