@@ -13,7 +13,7 @@ import { ArticlesService } from './articles.service'
 import { UpdateArticleDto } from './dto/update-article.dto'
 
 import { CreateArticleParams } from './models/create-article-params.model'
-import { ArticleResponse } from './models/article.response'
+import { ArticleResponse } from './models/article-response.model'
 
 @ApiTags('articles')
 @Controller('articles')
