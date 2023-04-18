@@ -1,61 +1,31 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { faker } from '@faker-js/faker'
-import validator from 'validator'
+import { mockDeep, DeepMockProxy } from 'jest-mock-extended'
+import { createId as createCUID } from '@paralleldrive/cuid2'
+import { Article } from '@prisma/client'
 
 import { ArticlesService } from './articles.service'
-
-import { PrismaService } from '@/database/prisma.service'
-import { ArticlesRepository } from '@/repositories/articles-repository'
-
-const repository = {
-  create: jest
-    .fn()
-    .mockImplementation(
-      ({
-        banner_url,
-        content,
-        slug,
-        sources,
-        title,
-      }: {
-        title: string
-        slug: string
-        banner_url: string
-        sources: string
-        content: string
-      }) => {
-        return {
-          id: faker.datatype.uuid(),
-          slug,
-          title,
-          banner_url,
-          sources,
-          content,
-          createdAt: faker.date.recent(0),
-          updatedAt: faker.date.recent(0),
-        }
-      },
-    ),
-}
+import { PrismaService } from '@/common/services/prisma.service'
 
 describe('Articles Service', () => {
   let articlesService: ArticlesService
-  let articlesRepository: ArticlesRepository
+  let spyPrismaService: DeepMockProxy<PrismaService>
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       providers: [
         ArticlesService,
-        PrismaService,
         {
-          provide: ArticlesRepository,
-          useValue: repository,
+          provide: PrismaService,
+          useFactory: () => mockDeep<PrismaService>(),
         },
       ],
     }).compile()
 
     articlesService = moduleRef.get<ArticlesService>(ArticlesService)
-    articlesRepository = moduleRef.get<ArticlesRepository>(ArticlesRepository)
+    spyPrismaService = moduleRef.get(
+      PrismaService,
+    ) as DeepMockProxy<PrismaService>
   })
 
   it('should be defined', () => {
@@ -63,35 +33,60 @@ describe('Articles Service', () => {
   })
 
   describe('Create new article', () => {
-    const articlePayload = {
-      title: 'As vantagens do Reboco',
+    const expectedArticleData = {
+      id: createCUID(),
+      title: 'Logística na Construção Civil',
+      slug: 'logistica-na-construcao-civil',
       banner_url: faker.image.abstract(),
-      content: faker.lorem.text(),
-      sources: [
+      content: faker.lorem.paragraphs(5),
+      sourcesArray: [
         faker.internet.url(),
         faker.internet.url(),
         ` ${faker.internet.url()}`,
       ],
+      createdAt: faker.date.recent(0),
+      updatedAt: faker.date.recent(0),
+    }
+    const expectedSourcesString = String(
+      expectedArticleData.sourcesArray.map(source => source.trim()),
+    )
+
+    const articlePayload = {
+      title: expectedArticleData.title,
+      banner_url: expectedArticleData.banner_url,
+      content: expectedArticleData.content,
+      sources: expectedArticleData.sourcesArray,
+    }
+
+    const article: Article = {
+      id: expectedArticleData.id,
+      slug: expectedArticleData.slug,
+      title: expectedArticleData.title,
+      banner_url: expectedArticleData.banner_url,
+      sources: expectedSourcesString,
+      content: expectedArticleData.content,
+      createdAt: expectedArticleData.createdAt,
+      updatedAt: expectedArticleData.updatedAt,
     }
 
     it('should create an article with valid data', async () => {
+      spyPrismaService.article.create.mockResolvedValue(article)
+
       const createdArticle = await articlesService.createNewArticle(
         articlePayload,
       )
 
-      expect(articlesRepository.create).toBeCalledWith({
-        ...articlePayload,
-        sources: String(articlePayload.sources.map(source => source.trim())),
-        slug: 'as-vantagens-do-reboco',
+      expect(spyPrismaService.article.create).toBeCalledTimes(1)
+      expect(spyPrismaService.article.create).toHaveBeenCalledWith({
+        data: {
+          ...articlePayload,
+          sources: expectedSourcesString,
+          slug: expectedArticleData.slug,
+        },
       })
-
-      expect(validator.isUUID(createdArticle.id)).toEqual(true)
-      expect(validator.isURL(createdArticle.banner_url)).toEqual(true)
-      expect(createdArticle.slug).toBe('as-vantagens-do-reboco')
-      expect(createdArticle.createdAt).toBeInstanceOf(Date)
-      expect(createdArticle.updatedAt).toBeInstanceOf(Date)
-      createdArticle.sources.forEach(source => {
-        expect(validator.isURL(source)).toEqual(true)
+      expect(createdArticle).toEqual({
+        ...article,
+        sources: article.sources.split(','),
       })
     })
   })

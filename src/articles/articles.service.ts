@@ -3,11 +3,11 @@ import { Injectable } from '@nestjs/common'
 import { CreateArticleParams } from './models/create-article-params.model'
 import { UpdateArticleDto } from './dto/update-article.dto'
 
-import { ArticlesRepository } from '@/repositories/articles-repository'
+import { PrismaService } from '@/common/services/prisma.service'
 
 @Injectable()
 export class ArticlesService {
-  constructor(private articleRepository: ArticlesRepository) {}
+  constructor(private prisma: PrismaService) {}
 
   async createNewArticle(createArticleParams: CreateArticleParams) {
     const {
@@ -25,12 +25,14 @@ export class ArticlesService {
 
     const sources = String(sourcesArray.map(source => source.trim()))
 
-    const article = await this.articleRepository.create({
-      title,
-      banner_url,
-      content,
-      slug,
-      sources,
+    const article = await this.prisma.article.create({
+      data: {
+        title,
+        banner_url,
+        content,
+        slug,
+        sources,
+      },
     })
 
     return { ...article, sources: article.sources.split(',') }
