@@ -5,18 +5,8 @@ import { ArticlesService } from './articles.service'
 
 import { PrismaService } from '@/common/services/prisma.service'
 
-import { ArticlesRepository } from '@/repositories/articles-repository'
-import { PrismaArticlesRepositoryService } from '@/repositories/prisma/prisma-articles-repository.service'
-
 @Module({
   controllers: [ArticlesController],
-  providers: [
-    ArticlesService,
-    PrismaService,
-    {
-      provide: ArticlesRepository,
-      useClass: PrismaArticlesRepositoryService,
-    },
-  ],
+  providers: [ArticlesService, PrismaService],
 })
 export class ArticlesModule {}
