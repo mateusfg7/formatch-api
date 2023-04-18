@@ -1,4 +1,11 @@
-### 0.0.1 (2023-04-18)
+### [0.0.2](https://github.com/mateusfg7/formatch-api/compare/0.0.1...0.0.2) (2023-04-18)
+
+
+### Features
+
+* **articles.openapi:** create a unified file with all openapi properties ([c984177](https://github.com/mateusfg7/formatch-api/commit/c984177b02bf8e0aa582572d70f83225b11d6b09))
+
+### [0.0.1](https://github.com/mateusfg7/formatch-api/compare/8798d33ab8f8bb0c78687935c8fc758f7c64b966...0.0.1) (2023-04-18)
 
 
 ### Features
