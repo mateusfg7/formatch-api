@@ -29,7 +29,7 @@ export class ArticlesController {
 
   @Get()
   findAll() {
-    return this.articlesService.findAll()
+    return this.articlesService.getAllArticles()
   }
 
   @Get(':id')

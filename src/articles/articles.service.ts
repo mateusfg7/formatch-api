@@ -38,8 +38,14 @@ export class ArticlesService {
     return { ...article, sources: article.sources.split(',') }
   }
 
-  findAll() {
-    return `This action returns all articles`
+  async getAllArticles() {
+    const articles = await this.prisma.article.findMany()
+    const articlesWithSourceAsArray = articles.map(article => ({
+      ...article,
+      sources: article.sources.split(','),
+    }))
+
+    return articlesWithSourceAsArray
   }
 
   findOne(id: number) {
